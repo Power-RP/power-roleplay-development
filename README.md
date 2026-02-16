@@ -178,4 +178,123 @@ If we cannot reproduce it, we will ask for:
 If we still cannot reproduce after reasonable attempts, the issue may be closed as “Cannot reproduce”.
 If it happens again later, you can reopen or create a new issue with better evidence.
 
-Stage
+Stage 3: Priority and severity assignment
+-----------------------------------------
+
+Confirmed issues are prioritized based on impact.
+
+High priority examples:
+1. Server crashes or severe performance degradation
+2. Exploits or dupes
+3. Bugs affecting many players or key systems (economy, inventory, jobs, PD/EMS core loops)
+4. Data loss (items, money, vehicles, properties)
+
+Lower priority examples:
+1. Cosmetic issues
+2. Minor UI alignment issues
+3. Rare edge cases with very low impact
+4. Quality-of-life improvements (these may be moved to feature requests)
+
+Stage 4: Work begins (fix or change)
+------------------------------------
+
+If the issue is approved for fixing:
+1. A developer investigates the root cause
+2. A fix is implemented
+3. The fix is tested in a controlled environment
+4. If safe, it is prepared for deployment
+
+Depending on the type of issue, you may see:
+1. A request to test on your side
+2. A note that it will be included in a future patch
+3. A question about expected behavior to confirm intended design
+
+Stage 5: Resolution outcomes (what you’ll see on the issue)
+-----------------------------------------------------------
+
+When work is complete, one of these will happen:
+
+1. Fixed
+   We implemented a fix and confirmed it works in testing.
+   The issue will be closed with a note describing the fix and, when applicable, when it will be live.
+
+2. Closed as duplicate
+   Your issue was already reported.
+   We will link the original issue.
+
+3. Closed as not a bug / intended behavior
+   The system is working as designed.
+   We will explain why and what to do instead (when applicable).
+
+4. Closed as cannot reproduce
+   We could not reproduce the bug with the information provided.
+   If you can reproduce again, reopen the issue or post new evidence.
+
+5. Won’t fix / out of scope
+   This is rare, but sometimes a “fix” would cause bigger problems than it solves, or it conflicts with design direction.
+   If so, we will explain the reasoning.
+
+6. Needs more information
+   The issue stays open, but we are waiting on your requested details.
+   If no response is provided after a reasonable period, it may be closed to keep the board clean.
+
+
+How We Will Respond (What You Should Expect)
+--------------------------------------------
+
+We respond in the issue thread so it stays tracked and searchable.
+
+Typical responses include:
+1. Confirmation that we reproduced the issue
+2. Questions requesting missing details
+3. Updates on status changes (triaged, investigating, fixed, deployed)
+4. A closing message describing the outcome
+
+Response timing can vary based on:
+1. Severity and priority
+2. Developer workload
+3. Whether the bug is reproducible
+4. Whether it requires deep testing or touches sensitive systems
+
+
+How You Can Help Us Fix It Faster
+---------------------------------
+
+1. Follow the template with complete details
+2. Provide exact reproduction steps
+3. Include logs and clips
+4. Mention recent changes (did this start after an update?)
+5. Keep one issue per bug
+6. Reply quickly if we request more information
+
+
+Good Example vs Bad Example
+---------------------------
+
+Bad report:
+“Inventory is broken. Fix it.”
+
+Good report:
+Title: “ox_inventory: stash search crashes client when opening gang stash at Legion”
+Description: “When opening the gang stash at Legion, the stash UI loads then freezes.”
+Expected: “Stash UI opens and I can move items.”
+Actual: “UI freezes and client becomes unresponsive.”
+Steps:
+1. Join server
+2. Go to Legion gang stash
+3. Press E to open stash
+4. Type any letter in the search box
+5. Observe freeze
+Evidence: “F8 error: [paste here]”
+Frequency: “Every time”
+Scope: “Happens to multiple gang members”
+Notes: “Started after the last update”
+
+
+Final Notes
+-----------
+
+If you want something changed or added (not a bug), submit it as an implementation request in Issues as well, but be clear it is a feature request, not a bug.
+
+Thank you for keeping reports clean and detailed.
+When issues are written well, fixes ship faster and everyone wins.
