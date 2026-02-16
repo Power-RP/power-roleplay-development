@@ -2,37 +2,57 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: ''
+labels: Bug
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## Bug Summary
+Provide a clear and concise description of the issue.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+Example:
+“Garage menu freezes when opening at Legion Square with ox_inventory enabled.”
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## Expected Behavior
+Describe what **should** happen if the system is working correctly.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+## Actual Behavior
+Describe what **actually** happens instead.
 
-**Additional context**
-Add any other context about the problem here.
+
+## Steps to Reproduce
+This is the most important section.  
+Provide **exact, numbered steps** so a developer can reproduce the issue reliably.
+
+Example:
+1. Join the server as a civilian
+2. Go to Legion Square garage
+3. Open the radial menu
+4. Select “Garage”
+5. Observe the freeze after clicking “Take Out Vehicle”
+
+
+## Frequency
+How often does this issue occur?
+- [ ] Every time
+- [ ] Sometimes
+- [ ] Rare / happened once
+
+
+## Scope / Impact
+Who does this affect?
+- [ ] Only me
+- [ ] My group
+- [ ] Multiple players
+- [ ] Everyone
+
+
+## Evidence (Required When Possible)
+Attach or paste any relevant evidence:
+- Screenshots
+- Video clips
+- Client F8 errors
+- Server console errors
+- txAdmin logs
