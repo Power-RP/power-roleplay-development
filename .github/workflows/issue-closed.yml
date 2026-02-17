@@ -1,0 +1,68 @@
+name: Issue Resolved Notification
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  discord-notify-close:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: read
+    steps:
+      - name: Send Discord Notification
+        uses: actions/github-script@v6
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          script: |
+            // 1. Get the issue details
+            const issue = context.payload.issue;
+            const repo = context.repo;
+            
+            // 2. Fetch the LAST comment on the issue (the closing comment)
+            const comments = await github.rest.issues.listComments({
+              owner: repo.owner,
+              repo: repo.repo,
+              issue_number: issue.number,
+            });
+            
+            // If there are comments, grab the last one. If not, use placeholder text.
+            const lastComment = comments.data.length > 0 
+              ? comments.data[comments.data.length - 1].body 
+              : "*No closing comment provided.*";
+
+            // 3. Helper to truncate long text (Discord limits fields to 1024 chars)
+            const truncate = (str, n) => (str.length > n) ? str.substr(0, n-1) + '...' : str;
+
+            // 4. Construct the Discord Embed
+            const embed = {
+              title: `✅ Issue Resolved: #${issue.number} ${issue.title}`,
+              url: issue.html_url,
+              color: 5763719, // Green color
+              timestamp: new Date().toISOString(),
+              fields: [
+                {
+                  name: "Original Issue",
+                  value: truncate(issue.body || "No description.", 500)
+                },
+                {
+                  name: "Closing Comment / Solution",
+                  value: truncate(lastComment, 1000)
+                },
+                {
+                  name: "Closed By",
+                  value: context.payload.sender.login,
+                  inline: true
+                }
+              ]
+            };
+
+            // 5. Send to Discord
+            const webhookUrl = process.env.DISCORD_WEBHOOK;
+            if (!webhookUrl) throw new Error("No DISCORD_WEBHOOK secret found!");
+            
+            await fetch(webhookUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ embeds: [embed] })
+            });
